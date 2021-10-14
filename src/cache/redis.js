@@ -5,6 +5,6 @@ const RDS_HOST = 'b53fbce6e927';
 const RDS_OPTS = {};
 const client = redis.createClient(RDS_PORT, RDS_HOST, RDS_OPTS);
 
-client.on('error', (err) => {
-  console.log(err);
+client.on('error', () => {
+  //   console.log(err);
 });
