@@ -1,6 +1,5 @@
-const httpStatus = require('http-status');
 const catchAsync = require('../utils/catchAsync');
-const { authService, } = require('../services');
+const { authService } = require('../services');
 
 const refreshTokens = catchAsync(async (req, res) => {
   const tokens = await authService.refreshAuth(req.body.refreshToken);
