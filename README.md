@@ -246,7 +246,6 @@ For example, if you are trying to get a user from the DB who is not found, and y
 ```javascript
 const httpStatus = require('http-status');
 const ApiError = require('../utils/ApiError');
-const User = require('../models/User');
 
 const getUser = async (userId) => {
   const user = await User.findById(userId);
