@@ -11,15 +11,15 @@ const { tokenTypes } = require('../config/tokens');
  * @param {string} [secret]
  * @returns {string}
  */
-const generateToken = (userId, expires, type, secret = config.jwt.secret) => {
+function generateToken(userId, expires, type, secret) {
   const payload = {
     sub: userId,
     iat: moment().unix(),
-    exp: expires.unix(),
+    exp: 86400,
     type,
   };
   return jwt.sign(payload, secret);
-};
+}
 
 // /**
 //  * Verify token and return token doc (or throw an error if it is not valid)

@@ -1,7 +1,14 @@
+const express = require('express');
 const logger = require('./config/logger');
 
-let server;
+const app = require('./app');
 
+const server = app.listen(3000, function () {
+  const host = server.address().address;
+  const { port } = server.address();
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});
 const exitHandler = () => {
   if (server) {
     server.close(() => {

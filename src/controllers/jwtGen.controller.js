@@ -1,11 +1,9 @@
-const catchAsync = require('../utils/catchAsync');
-const { authService } = require('../services');
+const { generateToken } = require('../services/token.service');
 
-const refreshTokens = catchAsync(async (req, res) => {
-  const tokens = await authService.refreshAuth(req.body.refreshToken);
-  res.send({ ...tokens });
-});
+function generateTokenFunc(req, res) {
+  const { userId, expires, type } = req.body;
+  const token = generateToken(userId, expires, type, 'test');
+  console.log(token);
+}
 
-module.exports = {
-  refreshTokens,
-};
+module.exports = generateTokenFunc;

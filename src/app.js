@@ -22,7 +22,7 @@ if (config.env !== 'test') {
 }
 
 // set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
 
 // parse json request body
 app.use(express.json());
@@ -31,37 +31,31 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // sanitize request data
-app.use(xss());
-app.use(mongoSanitize());
+// app.use(xss());
+// app.use(mongoSanitize());
 
 // gzip compression
-app.use(compression());
+// app.use(compression());
 
 // enable cors
-app.use(cors());
-app.options('*', cors());
+// app.use(cors());
+// app.options('*', cors());
 
 // jwt authentication
-app.use(passport.initialize());
-passport.use('jwt', jwtStrategy);
-
-// limit repeated failed requests to auth endpoints
-if (config.env === 'production') {
-  app.use('/v1/auth', authLimiter);
-}
 
 // v1 api routes
-app.use('/v1', routes);
+
+app.use('/', routes);
 
 // send back a 404 error for any unknown api request
-app.use((req, res, next) => {
-  next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
-});
+// app.use((req, res, next) => {
+//   next(new ApiError(httpStatus.NOT_FOUND, 'Not found'));
+// });FG
 
-// convert error to ApiError, if needed
-app.use(errorConverter);
+// // convert error to ApiError, if needed
+// app.use(errorConverter);
 
-// handle error
-app.use(errorHandler);
+// // handle error
+// app.use(errorHandler);
 
 module.exports = app;
